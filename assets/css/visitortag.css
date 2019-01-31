@@ -1,0 +1,26 @@
+.tag{
+ align-content: center;
+ padding: 2px;
+margin-top: 10%;
+/* background-color: #f5f8fa; */
+width: 40%;
+height: 100%;
+font-size: 20px;
+}
+.tag_name{
+    margin-right: 0px;
+    position: relative;
+    margin: 0 auto;
+    text-align: left;
+
+}
+.large{
+font-size: 20px!important;
+}
+.tag_info{
+    justify-content: left;
+}
+.tag_footer{
+    position: relative;
+    margin-bottom: 0;
+}

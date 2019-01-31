@@ -1,0 +1,14 @@
+body { 
+    /* background: url(../img/grad.jpg) no-repeat center center fixed;  */
+    background-color: bisque;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+/* @media (min-widht: 922px){
+    .table-responsive{
+        visible:
+    }
+} */
