@@ -21,13 +21,13 @@ class Welcome extends CI_Controller {
     }
     public function index()
     {
-		$data['email']='uchendubozz@gmail.com';
-		$data['price']= 395996.4;
-		$data['item_name']='MacBook Air';
-		$data['item_description'] = "Apple MacBook Air (13-inch Retina display, 1.6GHz dual-core Intel Core i5, 128GB) - Silver (Latest Model)";
-		$data['name'] = "Uchendu Precious";
-		$data['phone'] = "+2347034367931";
-		$this->load->view('purchase_view', $data);
+		$data['email']=''; // your email goes here
+		$data['price']= 0; // your price goes here
+		$data['item_name']=''; // the item name goes here
+		$data['item_description'] = "";// the item description goes here
+		$data['name'] = ""; // your name goes here
+		$data['phone'] = ""; // your phone number goes here e.g  +2347034367931
+		$this->load->view('purchase_view', $data); // send the data to the purchase view page
     }
  
 

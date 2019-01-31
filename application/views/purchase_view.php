@@ -43,7 +43,9 @@
                 </center>
                
 				<div class="container-login100-form-btn">
-					<a class="login100-form-btn"name="login" href="<?php echo site_url("Pay/getAuthURL/".$this->code->my_simple_crypt($price, 'e').'/'.$this->code->my_simple_crypt($name, 'e').'/'.$this->code->my_simple_crypt($phone, 'e').'/'.$this->code->my_simple_crypt($email, 'e').'/'.$this->code->my_simple_crypt($item_name, 'e'));?>"target="_blank"  style="width:100px;margin-bottom:5px;"  class="btn_buy"> Buy</a>
+					<a class="login100-form-btn"name="login" href="<?php echo site_url("Pay/getAuthURL/".$this->code->my_simple_crypt($price, 'e').
+					'/'.$this->code->my_simple_crypt($name, 'e').'/'.$this->code->my_simple_crypt($phone, 'e').'/'.$this->code->my_simple_crypt($email, 'e').
+					'/'.$this->code->my_simple_crypt($item_name, 'e'));?>"target="_blank"  style="width:100px;margin-bottom:5px;"  class="btn_buy"> Buy</a>
 
 				</div><br>
                

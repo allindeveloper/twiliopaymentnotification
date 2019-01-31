@@ -16,8 +16,8 @@ class Pay extends CI_Controller{
 
         $this->load->library('code');
         $this->load->library('paystack', [
-            'secret_key'=>'sk_test_3ce1fc2d77e8c393576ca9ad20fcf285ee800d28', 
-            'public_key'=>'pk_test_69194674d6b3d94fcb216914c9027e926d3f53ae']);
+            'secret_key'=>'', 
+            'public_key'=>'']);
     }
 
     function randstr($j = 12){
@@ -81,7 +81,7 @@ class Pay extends CI_Controller{
             $data['price'] = $this->session->userdata('price');
             $data['email'] = $this->session->userdata('email');
             $data['item_name'] = $this->session->userdata('item_name');
-            $message = 'You just Purchased '.$this->session->userdata('item_name'). ' at '.number_format($this->session->userdata('price'),3). ' on '.$day.''.$month.''.$year;
+            $message = 'You just Purchased '.$this->session->userdata('item_name'). ' at '.$this->session->userdata('price'). ' on '.$day.''.$month.''.$year;
          $data = ['phone' => '+2347034367931', 'text' => $message];
 		$this->sendSMS($data);
            
@@ -93,8 +93,8 @@ class Pay extends CI_Controller{
     }
     protected function sendSMS($data) {
         // Your Account SID and Auth Token from https://www.twilio.com/console
-          $sid = ''; // your sid token goes here
-          $token = ''; // your auth token goes there
+        $sid = '';
+        $token = '';
           $client = new Client($sid, $token);
           
           // Use the client to do fun stuff like send text messages!
@@ -103,7 +103,7 @@ class Pay extends CI_Controller{
               $data['phone'],
               array(
                   // A Twilio phone number you purchased at twilio.com/console
-                  "from" => "+19897182290",
+                  "from" => "",
                   // the body of the text message you'd like to send
                   'body' => $data['text']
               )

@@ -2,10 +2,10 @@
 defined('BASEPATH') OR exit('Access Denied');//remove this line if not using with CodeIgniter
 
 /**
- * Description of Paystack
+ * Description of Pay Controller
  *
- * @author Amir <amirsanni@gmail.com>
- * @date 20-Dec-2016
+ * @author Uchendu Precious <uchendubozz@gmail.com>
+ * @date 31-Jan-2019
  */
 class Paystack {
     protected $secret_key;
@@ -16,13 +16,6 @@ class Paystack {
         $this->public_key = $data['public_key'];
     }
     
-    /*
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    */
     
     /**
      * 
@@ -105,50 +98,8 @@ class Paystack {
         return FALSE;
     }
     
-    /*
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    */
     
-    /**
-     * 
-     * @param int $amount_in_kobo Amount to be paid (in kobo)
-     * @param string $email Customer's email address
-     * @param string $plan Plan to subscribe user to
-     * @param array $metadata_arr An array of metadata to add to transaction
-     * @param string $callback_url URL to call in case you want to overwrite the callback_url set on your paystack dashboard
-     * @param boolean $return_obj Whether to return the whole Object or just the authorisation URL
-     */
-    public function initSubscription($amount_in_kobo, $email, $plan, $metadata_arr=[], $callback_url="", $return_obj=false){        
-        if($amount_in_kobo && $email && $plan){
-            //https://api.paystack.co/transaction/initialize
-            $url = "https://api.paystack.co/transaction/initialize/";
-                
-            $post_data = [
-                'amount'=>$amount_in_kobo,
-                'email'=>$email,
-                'plan'=>$plan,
-                'metadata'=>json_encode($metadata_arr),
-                'callback_url'=>$callback_url
-            ];
 
-            //curl($url, $use_post, $post_data=[])
-            $response = $this->curl($url, TRUE, $post_data);
-            
-            if($response){                
-                //return the whole decoded object if $return_obj is true, otherwise return just the authorization_url
-                return $return_obj ? json_decode($response) : json_decode($response)->data->authorization_url;
-            }
-            
-            //api request failed
-            return FALSE;
-        }
-        
-        return FALSE;
-    }	
 	
     /*
     ********************************************************************************************************************************
@@ -171,90 +122,6 @@ class Paystack {
         return json_decode($this->curl($url, FALSE));
     }
     
-    /*
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    */
-    
-    public function chargeReturningCustomer($auth_code, $amount_in_kobo, $email, $ref="", $metadata_arr=[]){
-        
-        if($auth_code && $amount_in_kobo && $email){
-            //https://api.paystack.co/transaction/charge_authorization
-            $url = "https://api.paystack.co/transaction/charge_authorization/";
-                
-            $post_data = [
-                'authorization_code'=>$auth_code,
-                'amount'=>$amount_in_kobo,
-                'email'=>$email,
-                'reference'=>$ref,
-                'metadata'=>json_encode($metadata_arr)
-            ];
+ 
 
-            //curl($url, $use_post, $post_data=[])
-            $response = $this->curl($url, TRUE, $post_data);
-            
-            if($response){                
-                //return the whole json decoded object 
-                return json_decode($response);
-            }
-            
-            //api request failed
-            return FALSE;
-        }
-        
-        //required fields are not set
-        return FALSE;
-    }
-    
-    /*
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    ********************************************************************************************************************************
-    */
-    
-    /**
-     * 
-     * @param string $email
-     * @param string $first_name
-     * @param string $last_name
-     * @param string $phone
-     * @param Array $meta
-     * @return boolean
-     */
-    public function createCustomer($email, $first_name='', $last_name='', $phone='', $meta=[]){
-        //https://api.paystack.co/customer
-        $url = "https://api.paystack.co/customer";
-        
-        if($email && $url){
-            $post_data = [
-                'email'=>$email,
-                'first_name'=>$first_name,
-                'last_name'=>$last_name,
-                'phone'=>$phone,
-                'metadata'=>json_encode($meta)
-            ];
-            
-            //curl($url, $use_post, $post_data=[])
-            $response = $this->curl($url, TRUE, $post_data);
-            
-            //decode the response
-            $data = json_decode($response);
-            
-            if($data && $data->status){                
-                //return customer_code and ID
-                return ['customer_id'=>$data->data->id, 'customer_code'=>$data->data->customer_code];
-            }
-            
-            //api request failed
-            return FALSE;
-        }
-        
-        //required fields are not set
-        return FALSE;
-    }
 }
