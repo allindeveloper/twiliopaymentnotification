@@ -11,12 +11,9 @@ class Welcome extends CI_Controller {
         
 		$this->load->library('code');
 		$this->load->library('paystack', [
-            //his own
-            // 'secret_key'=>'sk_test_58caf76164c50ae6c7ff9c89a2369d67b74bea3a', 
-            // 'public_key'=>'pk_test_6ecaf53e98d465a523aaec2a2f1a202c47e7015e']);
-            //my own
-            'secret_key'=>'sk_test_811782bb132139e454070d4efb3d33f6496ee3a5', 
-            'public_key'=>'pk_test_df96c58c0793c49ff3412f7850e4d135ac501664']);
+            'secret_key'=>'', // your secret key from paystack developers console https://dashboard.paystack.com/#/settings/developer
+            'public_key'=>'' //  your public key from paystack developers console https://dashboard.paystack.com/#/settings/developer
+            ]);
 
 		
     

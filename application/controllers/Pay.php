@@ -92,9 +92,9 @@ class Pay extends CI_Controller{
         }
     }
     protected function sendSMS($data) {
-        // Your Account SID and Auth Token from twilio.com/console
-          $sid = 'AC37a5a07f2c41d65e5f4e600d6d189aa9';
-          $token = '0c803cf87f8961d682710870a323c090';
+        // Your Account SID and Auth Token from https://www.twilio.com/console
+          $sid = ''; // your sid token goes here
+          $token = ''; // your auth token goes there
           $client = new Client($sid, $token);
           
           // Use the client to do fun stuff like send text messages!
